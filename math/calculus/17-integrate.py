@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
 
 def poly_integral(poly, C=0):
-    if not isinstance(poly, list) or not all(isinstance(i, (int, float)) for i in poly):
+    if not isinstance(poly, list) or not all(isinstance(c, (int, float)) for c in poly):
         return None
     if not isinstance(C, (int, float)):
         return None
     
-    # Integral of each term: divide the coefficient by the new exponent (i + 1)
-    result = [C]  # Start with the integration constant
+    integral = [C]  # Start with the integration constant
+    for i, coef in enumerate(poly):
+        new_coef = coef / (i + 1)
+        integral.append(int(new_coef) if new_coef.is_integer() else new_coef)
     
-    for i in range(len(poly)):
-        if poly[i] != 0:  # If the coefficient is non-zero
-            new_coeff = poly[i] / (i + 1)
-            result.append(new_coeff)
+    # Remove trailing zeros to keep the list as small as possible
+    while len(integral) > 1 and integral[-1] == 0:
+        integral.pop()
     
-    # Remove trailing zeros (since they don't affect the polynomial)
-    while len(result) > 1 and result[-1] == 0:
-        result.pop()
-    
-    return result
+    return integral
+
