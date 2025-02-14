@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def poly_integral(poly, C=0):
     if not isinstance(poly, list) or not all(isinstance(i, (int, float)) for i in poly):
         return None
