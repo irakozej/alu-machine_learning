@@ -1,4 +1,6 @@
- class NeuralNetwork that defines a neural network
+#!/usr/bin/env python3
+'''
+    A class NeuralNetwork that defines a neural network
     with one hidden layer performing binary classification
 '''
 
